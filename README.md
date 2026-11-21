@@ -17,7 +17,7 @@ Turn a local MP4 into a silent, looping desktop wallpaper on macOS or Windows. O
 | Playback | Silent loop; pauses when the desktop is hidden, the display sleeps, the session is inactive or Low Power Mode is on | Silent loop; pauses while another app has focus or the session is locked |
 | Languages | English, Japanese and Traditional Chinese | English, Japanese and Traditional Chinese |
 
-The app follows the system's display language, with English as the fallback. Your MP4 stays in its original location.
+On Mac, choose **Language** at the bottom of Settings. Changes take effect immediately and are saved. **System Default** follows macOS. Windows follows the system display language. Your MP4 stays in its original location.
 
 ## Install
 
