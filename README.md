@@ -1,20 +1,31 @@
 # Moving Background
 
-MP4をデスクトップ壁紙として再生するアプリです。
+[English](README.md) · [日本語](docs/README.ja.md) · [繁體中文](docs/README.zh-Hant.md)
 
-| OS | ダウンロード | 対応環境 |
+Turn a local MP4 into a silent, looping desktop wallpaper on macOS or Windows. On Mac, assign a different video to each display and pause playback automatically when the desktop is hidden.
+
+[Download from GitHub Releases](https://github.com/Hamzimer/MP4-Moving-Background/releases/latest)
+
+![Moving Background on macOS, showing the default wallpaper and per-display controls](docs/macos-settings.jpg)
+
+## Features
+
+| | macOS | Windows preview |
 | --- | --- | --- |
-| macOS | [Moving-Background-macOS.dmg](../../raw/refs/heads/main/dist/Moving-Background-macOS.dmg) | macOS 26以降、Apple SiliconとIntel |
-| Windows | [Moving-Background-Windows-x64-Setup.exe](../../raw/refs/heads/main/dist/Moving-Background-Windows-x64-Setup.exe) | Windows 10・11 x64、.NET Framework 4.xとWPF |
+| Controls | Menu bar and settings window | Notification area |
+| Displays | Set a default video and override it per display | Primary display |
+| Playback | Silent loop; pauses when the desktop is hidden, the display sleeps, the session is inactive or Low Power Mode is on | Silent loop; pauses while another app has focus or the session is locked |
+| Languages | English, Japanese and Traditional Chinese | English, Japanese and Traditional Chinese |
 
-## インストール
+The app follows the system's display language, with English as the fallback. Your MP4 stays in its original location.
 
-- macOSではDMGを開き、Moving Backgroundを「アプリケーション」にドラッグします。起動後はメニューバーからMP4を選択します。Appleの公証は未取得です。
-- WindowsではセットアップEXEを実行し、起動後に通知領域のアイコンからMP4を選択します。Windows版はメインディスプレイ向けのプレビューです。セットアップEXEは署名なしで、Windows上でのインストールと再生は未検証です。
+## Install
 
-## SHA-256
+- **macOS 26 or later, Apple Silicon or Intel** — Open the [DMG](dist/Moving-Background-macOS.dmg?raw=true), drag Moving Background to Applications, then select an MP4 in Settings. This build has an ad hoc signature and is awaiting Apple notarization.
+- **Windows 10 or 11 x64** — Open the [setup EXE](dist/Moving-Background-Windows-x64-Setup.exe?raw=true), then choose an MP4 from the notification area. It uses .NET Framework 4.x with WPF. This preview installer is unsigned. Installation and playback on Windows still need runtime verification.
 
-```text
-5894bae64e05e214779295b2b60ebdc3126666aa6bfac67be8ba119acb8cef34  Moving-Background-macOS.dmg
-b953feda3d2de6bd1d97cdca64d92b299835aed2c3435faaeddd2724db4452c4  Moving-Background-Windows-x64-Setup.exe
-```
+[SHA-256 checksums](dist/SHA256SUMS.txt) · [Report an issue](https://github.com/Hamzimer/MP4-Moving-Background/issues)
+
+If Moving Background is useful to you, consider starring the repository.
+
+**Topics** · MP4 wallpaper · video wallpaper · live wallpaper · animated desktop · macOS · Windows · multi-monitor · menu bar
