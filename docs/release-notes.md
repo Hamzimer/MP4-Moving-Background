@@ -1,14 +1,11 @@
 ## English
 
-- On Mac, select **Language** at the bottom of Settings to switch between English, Japanese and Traditional Chinese immediately. The selection is saved for the next launch. **System Default** follows macOS.
-- The Mac DMG is ad hoc signed and has not been notarized. This release also includes the existing Windows x64 preview installer, which follows the system display language.
+Windows now uses a standard MSI installer with a prebuilt application, a Start menu shortcut and uninstall through Windows Settings. The installer is unsigned and requires .NET Framework 4.8. If you installed the earlier EXE-based preview, uninstall it first. The Mac download is the same v1.4.1 build.
 
 ## 日本語
 
-- Mac版の設定画面下部に **表示言語** を追加しました。日本語・英語・繁體中文にその場で切り替えられ、次回起動時にも選択が引き継がれます。**システム設定に従う** も選べます。
-- Mac用DMGはAppleの公証未取得です。Windows x64向けには引き続き既存のプレビュー用インストーラーを同梱しています。Windows版の表示言語はOSの設定に従います。
+Windowsの配布形式をMSIに変更しました。ビルド済みアプリを収録し、スタートメニューへの登録とWindowsの設定からのアンインストールに対応します。MSIは署名なしで、.NET Framework 4.8が必要です。旧EXE版をインストール済みの場合は先にアンインストールしてください。Mac用DMGは従来のv1.4.1と同じです。
 
 ## 繁體中文
 
-- Mac 版設定視窗下方新增 **顯示語言**。可立即切換繁體中文、日文及英文，並保留至下次啟動。也可選擇 **跟隨系統設定**。
-- macOS DMG 尚未通過 Apple 公證。本版本附帶現有的 Windows x64 預覽版安裝程式，Windows 版會跟隨系統的顯示語言。
+Windows 改用標準 MSI 安裝程式，內含預先建置的應用程式，並支援開始功能表捷徑及從 Windows 設定解除安裝。MSI 尚未簽署，需要 .NET Framework 4.8。若已安裝舊版 EXE，請先解除安裝。Mac 版沿用 v1.4.1 的 DMG。

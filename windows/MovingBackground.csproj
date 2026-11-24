@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <PlatformTarget>x64</PlatformTarget>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyTitle>Moving Background</AssemblyTitle>
+    <Product>Moving Background</Product>
+    <Version>1.4.2</Version>
+  </PropertyGroup>
+</Project>

@@ -22,8 +22,8 @@ Mac 版可在設定視窗下方的 **顯示語言** 選擇語言。變更會立�
 ## 安裝
 
 - **macOS 26 以上，支援 Apple Silicon 與 Intel** — 開啟 [DMG](../dist/Moving-Background-macOS.dmg?raw=true)，把應用程式拖曳至「應用程式」資料夾，再從設定選擇 MP4。此版本使用臨時簽署，尚未通過 Apple 公證。
-- **Windows 10 或 11 x64** — 開啟[安裝程式](../dist/Moving-Background-Windows-x64-Setup.exe?raw=true)，啟動後從通知區域選擇 MP4。需要 .NET Framework 4.x 與 WPF。此預覽版尚未簽署，也尚未在 Windows 上實測安裝與播放。
+- **Windows 10 或 11 x64** — 安裝 [Windows MSI](https://github.com/Hamzimer/MP4-Moving-Background/releases/latest/download/Moving-Background-Windows-x64.msi)，再從開始功能表開啟應用程式。請從通知區域選擇要作為桌布的 MP4。此未簽署的預覽版需要 .NET Framework 4.8。若已安裝舊版 EXE，請先從 Windows 設定解除安裝。
 
-[SHA-256 校驗碼](../dist/SHA256SUMS.txt) · [回報問題](https://github.com/Hamzimer/MP4-Moving-Background/issues)
+[SHA-256 校驗碼](https://github.com/Hamzimer/MP4-Moving-Background/releases/latest/download/SHA256SUMS.txt) · [回報問題](https://github.com/Hamzimer/MP4-Moving-Background/issues)
 
 如果這個應用程式對你有幫助，歡迎在 GitHub 加上星號。

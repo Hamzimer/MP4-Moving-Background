@@ -1,0 +1,43 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="Moving Background" Manufacturer="Hamzimer" Version="1.4.2"
+           UpgradeCode="B6A03B67-FAB2-42E3-91A7-199DC9806528" Scope="perUser" Language="1033">
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Moving Background is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+    <Icon Id="ProductIcon" SourceFile="App.ico" />
+    <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
+    <Property Id="LEGACYINSTALL">
+      <RegistrySearch Id="LegacyUninstaller" Root="HKCU"
+                      Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\MovingBackground"
+                      Name="UninstallString" Type="raw" />
+    </Property>
+    <Launch Condition="Installed OR NOT LEGACYINSTALL"
+            Message="Uninstall the previous EXE-based Moving Background preview from Windows Settings before installing this MSI." />
+
+    <StandardDirectory Id="LocalAppDataFolder">
+      <Directory Id="INSTALLFOLDER" Name="Moving Background">
+        <Component Id="ApplicationFiles" Guid="DF6B9FEE-EA63-4579-9547-B982FB50C051">
+          <File Id="ApplicationExe" Source="$(var.AppOutput)\MovingBackground.exe" />
+          <File Id="ApplicationConfig" Source="$(var.AppOutput)\MovingBackground.exe.config" />
+          <RegistryValue Root="HKCU" Key="Software\MovingBackground\Installer"
+                         Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+          <RemoveFolder Id="RemoveInstallFolder" On="uninstall" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ApplicationMenu" Name="Moving Background">
+        <Component Id="StartMenuShortcut" Guid="AB62AC0B-1B11-4F2B-A12D-71B72408E333">
+          <Shortcut Id="ApplicationShortcut" Name="Moving Background"
+                    Target="[#ApplicationExe]" WorkingDirectory="INSTALLFOLDER" />
+          <RegistryValue Root="HKCU" Key="Software\MovingBackground\Installer"
+                         Name="StartMenuShortcut" Type="integer" Value="1" KeyPath="yes" />
+          <RemoveFolder Id="RemoveApplicationMenu" On="uninstall" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+    <Feature Id="Application" Title="Moving Background">
+      <ComponentRef Id="ApplicationFiles" />
+      <ComponentRef Id="StartMenuShortcut" />
+    </Feature>
+  </Package>
+</Wix>

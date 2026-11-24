@@ -1,2 +1,1 @@
 7ba8e9003366f40137961d432da5c9b3deaf0560d2b349d22a8574f18346fb36  Moving-Background-macOS.dmg
-45b3b41a13470c96ebf03ed1130f2843d117d7383b2371c775f00e67a2613be5  Moving-Background-Windows-x64-Setup.exe

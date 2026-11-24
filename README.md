@@ -22,9 +22,9 @@ On Mac, choose **Language** at the bottom of Settings. Changes take effect immed
 ## Install
 
 - **macOS 26 or later, Apple Silicon or Intel** — Open the [DMG](dist/Moving-Background-macOS.dmg?raw=true), drag Moving Background to Applications, then select an MP4 in Settings. This build has an ad hoc signature and is awaiting Apple notarization.
-- **Windows 10 or 11 x64** — Open the [setup EXE](dist/Moving-Background-Windows-x64-Setup.exe?raw=true), then choose an MP4 from the notification area. It uses .NET Framework 4.x with WPF. This preview installer is unsigned. Installation and playback on Windows still need runtime verification.
+- **Windows 10 or 11 x64** — Install the [Windows MSI](https://github.com/Hamzimer/MP4-Moving-Background/releases/latest/download/Moving-Background-Windows-x64.msi). Then open Moving Background from the Start menu and choose an MP4 in the notification area. This unsigned preview requires .NET Framework 4.8. If you installed the previous EXE-based preview, uninstall it from Windows Settings first.
 
-[SHA-256 checksums](dist/SHA256SUMS.txt) · [Report an issue](https://github.com/Hamzimer/MP4-Moving-Background/issues)
+[SHA-256 checksums](https://github.com/Hamzimer/MP4-Moving-Background/releases/latest/download/SHA256SUMS.txt) · [Report an issue](https://github.com/Hamzimer/MP4-Moving-Background/issues)
 
 If Moving Background is useful to you, consider starring the repository.
 

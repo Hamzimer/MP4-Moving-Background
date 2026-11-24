@@ -22,8 +22,8 @@ Mac版は設定画面下部の **表示言語** で切り替えられます。�
 ## インストール
 
 - **macOS 26以降、Apple Silicon・Intel** — [DMG](../dist/Moving-Background-macOS.dmg?raw=true)を開き、アプリを「アプリケーション」へドラッグします。起動後、設定でMP4を選んでください。このビルドはアドホック署名で、Appleの公証は未取得です。
-- **Windows 10・11 x64** — [セットアップEXE](../dist/Moving-Background-Windows-x64-Setup.exe?raw=true)を開き、起動後に通知領域からMP4を選びます。.NET Framework 4.xとWPFを使用します。プレビュー版は署名なしで、Windows上でのインストールと再生は未検証です。
+- **Windows 10・11 x64** — [Windows用MSI](https://github.com/Hamzimer/MP4-Moving-Background/releases/latest/download/Moving-Background-Windows-x64.msi)をインストールし、スタートメニューからアプリを開きます。壁紙のMP4は通知領域から選べます。署名なしのプレビュー版で、.NET Framework 4.8が必要です。旧EXE版をインストール済みの場合は、先にWindowsの設定からアンインストールしてください。
 
-[SHA-256チェックサム](../dist/SHA256SUMS.txt) · [不具合の報告](https://github.com/Hamzimer/MP4-Moving-Background/issues)
+[SHA-256チェックサム](https://github.com/Hamzimer/MP4-Moving-Background/releases/latest/download/SHA256SUMS.txt) · [不具合の報告](https://github.com/Hamzimer/MP4-Moving-Background/issues)
 
 気に入ったら、GitHubでスターを付けていただけると励みになります。

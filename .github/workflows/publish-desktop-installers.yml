@@ -4,53 +4,90 @@ on:
   push:
     branches: [main]
     paths:
+      - .github/workflows/publish-desktop-installers.yml
       - dist/Moving-Background-macOS.dmg
-      - dist/Moving-Background-Windows-x64-Setup.exe
+      - docs/release-notes.md
+      - windows/**
   workflow_dispatch:
 
 concurrency: publish-desktop-installers
 
 env:
-  VERSION: v1.4.1
+  VERSION: v1.4.2
 
 jobs:
+  windows:
+    runs-on: windows-2022
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build Windows application and MSI
+        working-directory: windows
+        shell: pwsh
+        env:
+          DOTNET_ROLL_FORWARD: Major
+        run: |
+          dotnet build MovingBackground.csproj --configuration Release
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          dotnet tool install wix --version 6.0.2 --tool-path .wix
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          ./.wix/wix.exe build Installer.wxs -arch x64 -d 'AppOutput=bin/Release/net48' -o ../dist/Moving-Background-Windows-x64.msi
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify MSI install, launch and uninstall
+        shell: pwsh
+        run: ./windows/test-installer.ps1
+      - uses: actions/upload-artifact@v6
+        with:
+          name: windows-msi
+          path: dist/Moving-Background-Windows-x64.msi
+          if-no-files-found: error
+
   release:
+    needs: windows
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v7
+        with:
+          name: windows-msi
+          path: dist
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           (cd dist && sha256sum -c SHA256SUMS.txt)
           if gh release view "$VERSION" >/dev/null 2>&1; then
-            gh release upload "$VERSION" dist/Moving-Background-macOS.dmg dist/Moving-Background-Windows-x64-Setup.exe dist/SHA256SUMS.txt
-          else
-            gh release create "$VERSION" dist/Moving-Background-macOS.dmg dist/Moving-Background-Windows-x64-Setup.exe dist/SHA256SUMS.txt \
-              --target "$GITHUB_SHA" --title "Moving Background $VERSION" --notes-file docs/release-notes.md
+            exit 0
           fi
+          (cd dist && sha256sum Moving-Background-macOS.dmg Moving-Background-Windows-x64.msi > SHA256SUMS.txt)
+          gh release create "$VERSION" dist/Moving-Background-macOS.dmg dist/Moving-Background-Windows-x64.msi dist/SHA256SUMS.txt \
+            --target "$GITHUB_SHA" --title "Moving Background $VERSION" --notes-file docs/release-notes.md
+
   package:
+    needs: release
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v6
-      - name: Publish installer bundle to GitHub Container Registry
+      - name: Publish verified installer bundle to GitHub Container Registry
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          mkdir dist
+          gh release download "$VERSION" --repo "$GITHUB_REPOSITORY" --dir dist
           (cd dist && sha256sum -c SHA256SUMS.txt)
           image="ghcr.io/${GITHUB_REPOSITORY,,}:$VERSION"
           echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
           docker build --tag "$image" \
             --label "org.opencontainers.image.source=https://github.com/$GITHUB_REPOSITORY" \
             --label "org.opencontainers.image.version=$VERSION" \
-            --label "org.opencontainers.image.description=Offline macOS and Windows installers for Moving Background" \
+            --label "org.opencontainers.image.description=Offline macOS DMG and Windows MSI for Moving Background" \
             --file - dist <<'DOCKERFILE'
           FROM scratch
-          COPY Moving-Background-macOS.dmg Moving-Background-Windows-x64-Setup.exe SHA256SUMS.txt /installers/
+          COPY Moving-Background-macOS.dmg Moving-Background-Windows-x64.msi SHA256SUMS.txt /installers/
           DOCKERFILE
           docker push "$image"
